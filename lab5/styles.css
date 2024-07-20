@@ -1,1 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.photo-container {
+    position: relative;
+    margin: 10px;
+}
+
+.photo-container img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    transition: transform 0.2s;
+}
+
+.photo-container img.zoomed {
+    transform: scale(1.5);
+}
 
