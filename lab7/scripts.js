@@ -3,7 +3,7 @@ const apiKey = 'kd5lBq2uiePWhg5K9b9RfoZkTUFzEfnT';
 function searchGiphyXHR() {
     const query = document.getElementById('query').value;
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}&limit=4`);
+    xhr.open('GET', `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}&limit=5`);
     xhr.onload = function() {
         if (xhr.status === 200) {
             const response = JSON.parse(xhr.responseText);
@@ -15,7 +15,7 @@ function searchGiphyXHR() {
 
 function searchGiphyFetch() {
     const query = document.getElementById('query').value;
-    fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}&limit=4`)
+    fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}&limit=5`)
         .then(response => response.json())
         .then(data => {
             displayResults(data.data);
@@ -24,7 +24,7 @@ function searchGiphyFetch() {
 
 async function searchGiphyAsync() {
     const query = document.getElementById('query').value;
-    const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}&limit=4`);
+    const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}&limit=5`);
     const data = await response.json();
     displayResults(data.data);
 }
