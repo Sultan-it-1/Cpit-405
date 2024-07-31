@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Like or Dislike</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>إعجاب أو عدم إعجاب</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 50px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .button {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            user-select: none;
+            background-color: #f9f9f9;
+        }
+        .button:hover {
+            background-color: #f1f1f1;
+        }
+        .button span {
+            font-size: 1.5rem;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -18,7 +51,58 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const likeButton = document.getElementById('likeButton');
+            const dislikeButton = document.getElementById('dislikeButton');
+            const likeCount = document.getElementById('likeCount');
+            const dislikeCount = document.getElementById('dislikeCount');
+
+            // Load counts from localStorage
+            const storedLikes = localStorage.getItem('likes');
+            const storedDislikes = localStorage.getItem('dislikes');
+            likeCount.textContent = storedLikes ? storedLikes : 100;
+            dislikeCount.textContent = storedDislikes ? storedDislikes : 20;
+
+            function updateCount() {
+                localStorage.setItem('likes', likeCount.textContent);
+                localStorage.setItem('dislikes', dislikeCount.textContent);
+            }
+
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+
+            function setCookie(name, value, days) {
+                let expires = "";
+                if (days) {
+                    const date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = `; expires=${date.toUTCString()}`;
+                }
+                document.cookie = `${name}=${value || ""}${expires}; path=/`;
+            }
+
+            function handleVote(buttonType) {
+                const voteCookie = getCookie('voted');
+                if (!voteCookie) {
+                    if (buttonType === 'like') {
+                        likeCount.textContent = parseInt(likeCount.textContent) + 1;
+                    } else {
+                        dislikeCount.textContent = parseInt(dislikeCount.textContent) + 1;
+                    }
+                    updateCount();
+                    setCookie('voted', buttonType, 365);
+                } else {
+                    alert('You have already voted');
+                }
+            }
+
+            likeButton.addEventListener('click', () => handleVote('like'));
+            dislikeButton.addEventListener('click', () => handleVote('dislike'));
+        });
+    </script>
 </body>
 </html>
-
