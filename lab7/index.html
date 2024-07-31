@@ -11,12 +11,15 @@
     <div>
       <h2>"Welcome to the largest GIF library"</h2>  <a href="https://developers.giphy.com/docs/api/" target="_blank"><h3> by Giphy API</h3></a>
     </div>
-
+    
+    <div class="search">
     <input type="text" id="query" placeholder="Enter search term">
     <button onclick="searchGiphyXHR()">Search using XHR</button>
     <button onclick="searchGiphyFetch()">Search using fetch</button>
     <button onclick="searchGiphyAsync()">Search using fetch with async/await</button>
-    
+     </div>
+
+         
     <div id="results"></div>
 
     <script src="scripts.js"></script>
