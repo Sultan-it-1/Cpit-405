@@ -1,1 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 7 - Asynchronous JavaScript (Ajax programming)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Lab 7</h1>
+    <h2>Asynchronous JavaScript (Ajax programming)</h2>
+    <h3>Objective</h3>
+    <p>Consume an API using XHR, fetch, async fetch</p>
+    <h3>Lab Description</h3>
+    <p>Create a web page that consumes the <a href="https://developers.giphy.com/docs/api/" target="_blank">Giphy API</a>.</p>
+    
+    <input type="text" id="query" placeholder="Enter search term">
+    <button onclick="searchGiphyXHR()">Search using XHR</button>
+    <button onclick="searchGiphyFetch()">Search using fetch</button>
+    <button onclick="searchGiphyAsync()">Search using fetch with async/await</button>
+    
+    <div id="results"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
 
